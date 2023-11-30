@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="[[CHARCODE]]">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!-- ここ(RSS:URL:PURE:FULL)にRSSフィードへのURLが入ります。(FREE:TITLE:MAIN)には主タイトルが入ります。 -->
+	<link rel="alternate" type="application/rss+xml" title="[[FREE:TITLE:MAIN]]RSSフィード" href="[[RSS:URL:PURE:FULL]]">
+	<!-- OGP -->
+	[[OGP]]
+
+	<!-- タイトル -->
+	<title>[[FREE:TITLE:MAIN]] [[FREE:TITLE:SUB]]</title>
+	<!-- 1行説明文 -->
+	<meta name="description" content="[[FREE:DESCRIPTION]]">
+
+	<!-- ファビコンのパスは適宜置き換える -->
+	<link rel="icon" href="favicon.ico">
+
+	<!-- new.cssの読み込み -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
+
+	<!-- cssの読み込み  -->
+	<link rel="stylesheet" href="style/tegalog.css">
+
+	<!-- font awesomeのインポート -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<body class="[[SITUATION:CLASS]]">
+	<header>
+		<h2><a href="[[HOME:URL:FULL]]">[[FREE:TITLE:MAIN]]</a></h2>
+		<p> [[FREE:TITLE:SUB]] </p> <small>[[FREE:DESCRIPTION]]</small>
+	</header>
+	<div class="Login-Required">[[QUICKPOST]]</div>
+	<main>
+		[[TEGALOG]]
+		<!-- ページナビゲーション -->
+		<div>[[NAVI:PREVNEXT]]</div>
+		<div>[[NAVI:PAGELIST]]</div>
+		<div>[[NAVI:TOPPAGE]]</div>
+	</main>
+	<aside>
+		<div>
+			<h3>検索</h3>
+			[[SEARCHBOX:COMPLEX]]
+		</div>
+		<div>
+			<h3>フリースペース</h3>
+			[[FREESPACE]]
+		</div>
+		<div>
+			<h3>新着投稿リスト</h3>
+			[[LATESTLIST]]
+		</div>
+		<div>
+			<h3>新着画像リスト</h3>
+			[[IMAGELIST]]
+		</div>
+		<div>
+			<h3>日付リスト</h3>
+			[[DATEBOX:LIST]]
+		</div>
+		<div>
+			<h3>ハッシュタグ</h3>
+			[[HASHTAG:LIST]]
+		</div>
+		<div>
+			<h3>カテゴリ</h3>
+			[[CATEGORY:TREE]]
+		</div>
+		<div>
+			<h3>カレンダー</h3>
+			[[CALENDAR]]
+		</div>
+		<div> <small> <a href="[[NEWPOST:URL]] ">新規投稿</a>/
+				<a href="[[ADMIN:URL]]  ">管理画面</a>/
+				<a href="[[GALLERY:URL]] ">ギャラリー</a>/
+				<a href="[[RSS:URL]] ">RSS</a> </small> </div>
+	</aside>
+	<footer>
+		<!-- Copyright部分はサークル名やサイト名、管理人の名前、西暦などを適切に置き換えてください。 -->
+		<p>Copyright [[FREE:TITLE:MAIN]] [[INFO:LASTUPDATE:Y]].</p>
+
+
+		<p><small>[[VERSION:NEWTAB]] .</small></p>
+		<p>
+			<small>
+				Theme by <a href="https://takotubo.10rino.net" rel="noreferrer noopener">Takotubo Club</a>.
+			</small>
+		</p>
+		<p>
+			<small>
+				Thanks by
+				<a href="https://newcss.net" rel="noreferrer noopener">new.css</a>,
+				<a href="https://fontawesome.com" rel="noreferrer noopener">Font Awesome</a>,
+				<a href="https://clipboardjs.com" rel="noreferrer noopener">clipboard.js</a>.
+			</small>
+		</p>
+	</footer>
+
+	<!-- jQuery 読み込み -->
+	<script src="https://code.jquery.com/jquery-3.7.0.js"
+		integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous">
+		</script>
+
+	<!-- 記事引用のscript -->
+	[[INCLUDE:tako-0/asset/quote.html]]
+
+	<!-- カスタム絵文字、画像をスキン側で差し込みやすくする -->
+	[[INCLUDE:tako-0/asset/ce_js.html]]
+
+	<!-- ダークモードとライトモードの切り替え -->
+	[[INCLUDE:tako-0/asset/darkmode.html]]
+
+	<!-- ローディング画面 -->
+	[[INCLUDE:tako-0/asset/load.html]]
+
+	<!-- クリップボードにURLをコピーする -->
+	[[INCLUDE:tako-0/asset/clipboad.html]]
+
+	<!-- lightbox以外を使う場合ここを書き換える -->
+	[[JS:LIGHTBOX]]
+
+</body>
+
+</html>

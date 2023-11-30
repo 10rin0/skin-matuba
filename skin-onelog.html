@@ -1,0 +1,42 @@
+<!-- 投稿の状態（鍵付き・固定投稿など）によって表示を変えたいときのクラス（POSTSTATUS）
+	不要なら削除して大丈夫 -->
+<div class="[[POSTSTATUS]]">
+	<div class="post-header">
+		<!-- 投稿日時（デフォルトスキンを使って投稿単体を表示するための固有URL） -->
+		<h3><a href="[[PERMAURL:FULL]]">[[DATE:Y/M/D h:m]]</a></h3>
+		<!-- 新規投稿を示す。プレーンテキストで表示されるので、装飾したい場合はspanタグなどで囲む -->
+		[[NEW]]
+
+		<!-- ログインしているときのみ見える、編集用のURLを出力。
+	   非ログイン状態でも見れるようにするためにはクラスを削除 -->
+		<a href="[[EDITURL]]" class="Login-Required">edit</a> <!-- 投稿本文を出力 -->
+	</div>
+
+	<div class="comment">[[COMMENT]]</div>
+
+	<div class="post-fotter">
+
+		<!-- Fediverse（ActivityPubサーバー）に本文1行目とURLを投稿 -->
+			<a href="https://fedibuzzer.ajr-news.com/share?text=[[COMMENT:TITLE]]  [[PERMAURL:FULL]]" target="_blank">
+				<button>
+					<i class="fa-solid fa-circle-nodes"></i> Fediverseに共有
+				</button>
+			</a>
+
+		<!-- twitter(X)に共有。文字数はURLを含めて140文字を超えないように注意 -->
+		<a href="https://twitter.com/intent/tweet?url=[[PARMAURL:FULL]]&text=[[COMMENT:TITLE:100:...]]" target="_blank">
+			<button>
+				<i class="fa-brands fa-x-twitter"></i> X(twitter)に共有
+			</button>
+		</a>
+
+		<!-- URLコピーボタン　タグを埋めればテキストの投稿もできる -->
+		<button class="post-share" data-clipboard-text="[[COMMENT:TITLE:100:...]] [[PERMAURL:FULL]]">
+			<i class="fa-solid fa-copy"></i> 本文とURLをコピー
+		</button>
+
+		<!-- 投稿に含まれる、カテゴリとタグを抽出 -->
+		<div>カテゴリー：[[CATEGORYLINKS]]</div>
+		<div>タグ：[[COMMENT:TAGS]]</div>
+	</div>
+</div>

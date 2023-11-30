@@ -1,0 +1,52 @@
+<div id="loading">
+    <div class="load_anime"></div>
+</div>
+<style>
+    /* ローディング　背景画面 */
+    #loading {
+        width: 100vw;
+        height: 100vh;
+        transition: all 1s;
+        background-color: var(--nc-lk-1);
+
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 9999;
+
+        /*真ん中寄せ*/
+        display: flex;
+        align-items: center;
+    }
+
+    .loaded {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+
+    /*実際動く部分*/
+    .load_anime {
+        width: 30px;
+        height: 30px;
+        margin: 0 auto;
+        border: 5px solid var(--nc-bg-1);
+        border-right: 5px solid transparent;
+        border-radius: 50%;
+        animation: rotate 1s linear infinite;
+    }
+
+    /* ローディングアニメーション */
+    @keyframes rotate {
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+</style>
+
+<script>
+    window.onload = function () {
+        const spinner = document.getElementById('loading');
+        spinner.classList.add('loaded');
+    }
+</script>

@@ -1,0 +1,209 @@
+<!-- スクリプト版 -->
+
+<!-- ラジオボタン -->
+<input type="radio" name="codecopy" id="cepick_bottun">
+<input type="radio" name="codecopy" id="image_bottun" checked>
+<input type="radio" name="codecopy" id="null">
+
+
+<div class="copy-paste  Login-Required">
+
+    <label for="cepick_bottun">
+        <i class="fa-regular fa-face-smile"></i>
+    </label>
+    <label for="image_bottun">
+        <i class="fa-solid fa-image"></i>
+    </label>
+
+    <label for="null">
+        <i class="fa-solid fa-xmark"></i>
+    </label>
+
+</div>
+
+
+<div class="cepicker copytter"></div>
+<div class="imgpicker copytter"></div>
+
+
+
+<style>
+    /*全体の調整*/
+    input[name="codecopy"] {
+        display: none;
+    }
+
+    .copy-paste {
+        display: inline-block;
+        position: fixed;
+        top: 15lvh;
+        left: 0;
+        width: 1.2em;
+        z-index: 9998;
+
+        cursor: pointer;
+        font-size: 1.2em;
+        padding: 5px 15px;
+        background-color: var(--nc-bg-2);
+        border-width: 2px 3px 2px 0;
+        border-style: solid;
+        border-color: var(--nc-bg-3);
+    }
+
+
+
+    .copytter {
+        display: block;
+        position: fixed;
+        bottom: 0;
+        left: -100%;
+        transition: 0.5s;
+
+        margin: 10px 0;
+        padding: 5px 0;
+        width: 100%;
+        max-width: 400px;
+        height: 50lvh;
+        overflow-y: auto;
+        overflow-x: auto;
+        background-color: var(--nc-bg-2);
+
+        border-width: 2px 2px 0 2px;
+        border-style: solid;
+        border-color: var(--nc-bg-3);
+
+    }
+
+    #cepick_bottun:checked~.cepicker {
+        left: 0;
+    }
+
+    #image_bottun:checked~.imgpicker {
+        left: 0;
+    }
+
+    #null:checked~.copy-paste>label[for="null"] {
+        display: none;
+    }
+
+
+    /*絵文字リスト全体を横並びにする*/
+    .cepicker #CemojiList {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 6px 3px;
+    }
+
+    /*絵文字、名前、コピーボタンを縦並びに*/
+    .cepicker .oneCemoji {
+        display: inline-grid;
+        justify-items: center;
+        padding: 2px;
+        background-color: var(--nc-bg-3);
+    }
+
+    /*絵文字名は隠す*/
+    .cepicker .cename {
+        display: none;
+    }
+
+    /*コピーボタンを小さめにする*/
+    .cepicker .cectrl button {
+        font-size: 0.7em;
+    }
+
+    /*絵文字の高さを指定する（記事の絵文字とは別）*/
+    .cepicker .oneCemoji img {
+        height: 1.5em;
+    }
+
+
+    /*画像リストの調整*/
+    .imgpicker :is(.pagelist, .ctrlbox, .PagenationLinks, .storageStatus, .embcodelabel),
+    th,
+    .widthheight {
+        display: none;
+    }
+
+    .imgpicker td:is(.imgid, .imgupid, .imguptime, .size, .flags, .cap),
+    td:nth-last-of-type(1):not(.embcode) {
+        display: none;
+    }
+
+    .imgpicker a[data-lightbox="tegalogimage"] {
+        margin: auto;
+        width: fit-content;
+        display: block;
+    }
+
+    .imgpicker img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        margin: auto;
+    }
+
+    .imgpicker input {
+        width: 50px;
+    }
+
+    .imgpicker .btnlink.embcopy {
+        font-size: 1.2em;
+        padding: 6px 12px;
+        background-color: var(--nc-lk-1);
+        color: var(--nc-lk-tx);
+    }
+
+    .imgpicker .embcode {
+        color: var(--nc-tx-2);
+        line-height: 2.4;
+        font-size: 0.7em;
+
+        text-align: center;
+
+    }
+</style>
+<script>
+    $(document).ready(function () {
+        // ?mode=admin&work=cemoji(絵文字ページ)から情報を取得
+        $.get("?mode=admin&work=cemoji", function (data) {
+            var CElist = $(data).find("#CemojiList").html();
+            var CEscriptContent = $(data).find("script").html();
+
+            // Scriptタグは実行するために追加
+            var CEscriptElement = document.createElement("script");
+            CEscriptElement.innerHTML = CEscriptContent;
+
+            // cepicker以外のクラス名を指定した場合はここを書き換える(1)
+            $(".cepicker").html(`
+          <div id="CemojiList">${CElist}</div>
+       `);
+
+            // cepicker以外のクラス名を指定した場合はここを書き換える(2)
+            $(".cepicker").append(CEscriptElement);
+        });
+    });   
+</script>
+
+<script>
+    $(document).ready(function () {
+        // ?mode=admin&work=images(画像一覧ページ)から情報を取得
+        $.get("?mode=admin&work=images", function (data) {
+            var IMGlist = $(data).find(".imagetablearea").html();
+            var IMGscriptContent = $(data).find("script").html();
+
+            // Scriptタグは実行するために追加
+            var IMGscriptElement = document.createElement("script");
+            IMGscriptElement.innerHTML = IMGscriptContent;
+
+            // imgpicker以外のクラス名を指定した場合はここを書き換える(1)
+            $(".imgpicker").html(`
+          <div id="IMGList">${IMGlist}</div>
+       `);
+
+            // imgpicker以外のクラス名を指定した場合はここを書き換える(2)
+            $(".imgpicker").append(IMGscriptElement);
+        });
+    });   
+</script>

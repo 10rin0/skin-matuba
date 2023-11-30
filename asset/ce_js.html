@@ -1,0 +1,120 @@
+<!-- get_cemojiとセットで使う -->
+<input type="checkbox" name="codecopy" id="cepick_bottun">
+
+<label for="cepick_bottun" class="copy-paste Login-Required">
+    <i class="fa-regular fa-face-smile"></i>
+</label>
+
+<div class="cemojipicker"></div>
+
+<style>
+    /* ---------------------- カスタム絵文字一覧をスキン側で表示する ---------------------- */
+    /*ボタンを押すと表示されるようにする*/
+    input[name="codecopy"] {
+        display: none;
+    }
+
+    .copy-paste {
+        display: inline-block;
+        position: fixed;
+        top: 15lvh;
+        left: 0;
+        z-index: 9998;
+
+        cursor: pointer;
+        font-size: 1.2em;
+        padding: 5px 10px;
+        background-color: var(--nc-bg-2);
+        border-width: 2px 3px 2px 0;
+        border-style: solid;
+        border-color: var(--nc-bg-3);
+    }
+
+    /*全体*/
+    .cemojipicker {
+        position: fixed;
+        bottom: 0;
+        left: -100%;
+        transition: 0.5s;
+
+        margin: 10px 0;
+        padding: 5px 0;
+        width: 100%;
+        max-width: 400px;
+        height: 45lvh;
+        overflow-y: auto;
+        overflow-x: auto;
+        background-color: var(--nc-bg-2);
+
+        border-width: 2px 2px 0 2px;
+        border-style: solid;
+        border-color: var(--nc-bg-3);
+    }
+
+    #cepick_bottun:checked~.cemojipicker {
+        left: 0;
+    }
+
+    /*表示する絵文字のサイズ*/
+    .cemojipicker img {
+        height: 2em;
+        margin: 4px;
+        transition: 0.3s;
+    }
+
+    /*絵文字をクリックしたらちょっと小さくなる*/
+    .cemojipicker img:active {
+        transform: scale(0.8);
+    }
+</style>
+
+<!-- カスタム絵文字ピッカーのスクリプト
+	基本的に変更しなくていいですが、phpファイルの場所を移動した場合は適宜パスの変更をしてください -->
+<script>
+    $(document).ready(function () {
+        // サーバーサイドのスクリプトから画像ファイルリストを取得
+        $.ajax({
+            url: 'tako-0/asset/get_cemoji.php', // tegalog.cgiからの相対パスを指定
+            dataType: 'json',
+            success: function (data) {
+                // 取得したファイルリストを処理
+                $.each(data, function (index, filename) {
+
+                    // 拡張子を取り除いたファイル名を生成
+                    var fileBaseName = filename.split('.').slice(0, -1).join('.');
+
+                    // 画像の<img>要素を作成し、alt属性を設定して<div class="cemojipicker">に追加
+                    // 必要な場合これもtegalog.cgiからの相対リンクで指定する
+                    var imgSrc = 'emoji/' + filename;
+
+                    // alt属性を指定された形式に設定
+                    var altText = '[:' + fileBaseName + ':]';
+
+                    var img = $("<img>").attr("src", imgSrc).attr("alt", altText);
+                    img.appendTo(".cemojipicker");
+
+                    // 画像をクリックしたときの処理
+                    img.click(function () {
+                        // クリックされた画像のalt属性の値を取得
+                        var altText = $(this).attr("alt");
+
+                        // <textarea class="tegalogpost">のDOM要素を取得
+                        var textarea = document.querySelector(".tegalogpost");
+
+                        // カーソルの位置を取得
+                        var cursorPos = textarea.selectionStart;
+
+                        // テキストエリアの内容を取得
+                        var text = textarea.value;
+
+                        // カーソル位置に新しいテキストを挿入
+                        var newText = text.slice(0, cursorPos) + altText + text.slice(cursorPos);
+
+                        // テキストエリアに新しいテキストを設定
+                        textarea.value = newText;
+                    });
+                });
+            }
+        });
+    });
+</script>
