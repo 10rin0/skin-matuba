@@ -10,7 +10,7 @@ if (strpos($referer, $allowedDomain) === 0) {
     // 許可するドメインからのアクセスの場合、処理を続行
 
     // カスタム絵文字ディレクトリの、PHPの場所からの相対パス（デフォルトはemoji）
-    $imgDir = '../../emoji/';
+    $imgDir = '../emoji/';
 
     // ディレクトリ内のファイル一覧を取得
     $files = scandir($imgDir);

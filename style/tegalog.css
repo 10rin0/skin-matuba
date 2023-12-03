@@ -1,6 +1,3 @@
-@import url(color.css);
-@import url(zindex.css);
-
 /* -------------------- テキスト(記事の中身)関連 -------------------- */
 /*  汎用装飾(てがろぐ専用記法で書かれた文字）  */
 /* E:強調(Emphasis) */
@@ -542,11 +539,9 @@ body:not(.onelog) .matuba_tegalog {
     gap: 10px;
 }
 
-/*日付セパレーター　設定からオフにしたほうがいい感じに見えると思います*/
+/*日付セパレーター　設定からオフしてもいいです*/
 p.dateseparator {
-    display: block;
-    width: 100%;
-    margin: 1.5em 0 1em;
+    display: none;
 }
 
 /*投稿一つ一つを正方形にする*/
@@ -797,7 +792,7 @@ input.matuba_input {
     position: fixed;
     right: 0;
     top: calc(100% - 4.2rem);
-    z-index: 9998;
+    z-index: var(--matuba_pci_btn);
     padding: 5px 10px;
     font-size: 2rem;
     background-color: var(--nc-bg-2);
@@ -854,7 +849,7 @@ input[id="image_bottun"]:checked~.matuba_pci_btn>label[for="image_bottun"] {
     top: 100%;
     right: 0;
     left: 0;
-    z-index: 9996;
+    z-index: var(--matuba_quickpost);
     height: 100lvh;
     background-color: var(--nc-bg-2);
     transition: 0.3s;
@@ -881,7 +876,6 @@ html:has(input[id="quickpost_bottun"]:checked) {
     display: block;
     position: fixed;
     bottom: 0;
-    z-index: 9997;
     transition: 0.5s;
     width: 100%;
     max-width: 400px;
@@ -901,6 +895,8 @@ html:has(input[id="quickpost_bottun"]:checked) {
 .cepicker {
     left: -100%;
     border-width: 2px 2px 0 0;
+    z-index: var(--cepicker);
+
 }
 
 input[id="quickpost_bottun"]:checked~#cepick_bottun:checked~.cepicker {
@@ -910,6 +906,7 @@ input[id="quickpost_bottun"]:checked~#cepick_bottun:checked~.cepicker {
 .imgpicker {
     border-width: 2px 0 0 2px;
     right: -100%;
+    z-index: var(--imgpicker);
 }
 
 input[id="quickpost_bottun"]:checked~#image_bottun:checked~.imgpicker {
@@ -964,7 +961,7 @@ input[id="quickpost_bottun"]:checked~#image_bottun:checked~.imgpicker {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 9999;
+    z-index: var(--loading);
 
     /*真ん中寄せ*/
     display: flex;

@@ -22,8 +22,9 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
 
 	<!-- cssの読み込み  -->
+	<link rel="stylesheet" href="style/color.css">
+	<link rel="stylesheet" href="style/zindex.css">
 	<link rel="stylesheet" href="style/tegalog.css">
-	<link rel="stylesheet" href="style/memo.css">
 
 
 	<!-- font awesomeのインポート -->
@@ -93,7 +94,7 @@
 	<div class="matuba_situation">[[IF(-onelog):[[SITUATION]]:IF]]</div>
 
 	<main>
-		<div class="matuba_tegalog">[[TEGALOG]]</div>
+		<div class="matuba_tegalog">[[TEGALOG:12]]</div>
 
 		<div class="matuba_pagenavi">
 			<!-- ページナビゲーション -->
@@ -205,6 +206,14 @@
 		integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous">
 		</script>
 
+	<!-- ローディング画面 -->
+	<script>
+		window.onload = function () {
+			const spinner = document.getElementById('loading');
+			spinner.classList.add('loaded');
+		}
+	</script>
+
 	<!-- 記事引用のscript -->
 	<script>
 		$(document).ready(function () {
@@ -256,7 +265,7 @@
 		$(document).ready(function () {
 			// サーバーサイドのスクリプトから画像ファイルリストを取得
 			$.ajax({
-				url: 'tako-0/asset/get_cemoji.php', // tegalog.cgiからの相対パスを指定
+				url: 'skin-matuba/get_cemoji.php', // tegalog.cgiからの相対パスを指定
 				dataType: 'json',
 				success: function (data) {
 					// 取得したファイルリストを処理
@@ -335,14 +344,6 @@
 		document
 			.getElementById("toggle-theme-button")
 			.addEventListener("click", toggleTheme);
-	</script>
-
-	<!-- ローディング画面 -->
-	<script>
-		window.onload = function () {
-			const spinner = document.getElementById('loading');
-			spinner.classList.add('loaded');
-		}
 	</script>
 
 	<!-- クリップボードにURLをコピーする -->

@@ -1,4 +1,16 @@
 :root {
+    /*ローディング（最優先）*/
+    --loading: 99999;
+
+    /*カスタム絵文字と画像を表示するボタン*/
+    --matuba_pci_btn: 9998;
+    /*絵文字*/
+    --cepicker: 9997;
+    /*画像*/
+    --imgpicker: 9996;
+    /*クイック投稿フォーム*/
+    --matuba_quickpost: 9995;
+
     /*ナビメニューで開くモード・管理画面のパネル*/
     --matuba_menu_panel: 10;
     /*ナビメニューをレイヤーの上に*/
@@ -14,6 +26,6 @@
 
 
     /*鍵投稿の背景に鍵マークを表示する*/
-    --matuba_post-status-lock:-1;
+    --matuba_post-status-lock: -1;
 
 }
