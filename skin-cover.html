@@ -3,8 +3,7 @@
 
 <head>
 	<meta charset="[[CHARCODE]]">
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<!-- ここ(RSS:URL:PURE:FULL)にRSSフィードへのURLが入ります。(FREE:TITLE:MAIN)には主タイトルが入ります。 -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
 	<link rel="alternate" type="application/rss+xml" title="[[FREE:TITLE:MAIN]]RSSフィード" href="[[RSS:URL:PURE:FULL]]">
 	<!-- OGP -->
 	[[OGP]]
@@ -17,73 +16,140 @@
 	<!-- ファビコンのパスは適宜置き換える -->
 	<link rel="icon" href="favicon.ico">
 
+	<!-- Normalize.cssの読み込み -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css">
 	<!-- new.cssの読み込み -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
 
 	<!-- cssの読み込み  -->
 	<link rel="stylesheet" href="style/tegalog.css">
+	<link rel="stylesheet" href="style/memo.css">
+
 
 	<!-- font awesomeのインポート -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 
 <body class="[[SITUATION:CLASS]]">
+	<div id="loading">
+		<div class="load_anime"></div>
+	</div>
+	<nav>
+		<div class="matuba_menu-wrap">
+			<a href="[[HOME:URL]]"><img src="skin-matuba/matuba.png" class="matuba_menu_logo" alt="ロゴ"></a>
+
+			<input type="checkbox" id="matuba_menu">
+			<label for="matuba_menu" class="matuba_menu_btn">
+				<i class="fa-solid fa-plus"></i>
+			</label>
+
+			<div class="matuba_menu_panel">
+				<!-- グループごとにulで囲む（境界線を引きます） -->
+				<ul>
+					<li id="toggle-theme-button">
+						<i class="fa-solid fa-circle-half-stroke"></i> ダークモード
+					</li>
+					<li><a href="#top">
+							<i class="fa-solid fa-angles-up"></i> 上に移動</a></li>
+					<li><a href="#matuba_bottom">
+							<i class="fa-solid fa-angles-down"></i>下に移動</a></li>
+				</ul>
+				<ul>
+					<li><a href="[[HOME:URL]]">
+							<i class="fa-solid fa-house"></i> トップページ</a></li>
+					<li><a href="#matuba_dashbord">
+							<i class="fa-solid fa-desktop"></i> ダッシュボード</a></li>
+				</ul>
+				<ul>
+					<li><a href="[[GALLERY:URL]]" title="ギャラリーモードを表示">
+							<i class="fa-solid fa-palette"></i> ギャラリー</a></li>
+					<li><a href="[[PICTS:URL]]" title="画像一覧モードを表示">
+							<i class="fa-solid fa-images"></i> 画像一覧</a></li>
+					<li><a href="[[SITEMAP:URL]]" title="サイトマップページを表示">
+							<i class="fa-solid fa-map"></i> サイトマップ</a></li>
+					<li><a href="[[RSS:URL]]" title="RSSを表示">
+							<i class="fa-solid fa-rss"></i> RSS</a></li>
+				</ul>
+
+				<ul>
+					<li><a href="[[NEWPOST:URL]] "><i class="fa-solid fa-file-pen"></i> 新規投稿</a></li>
+					<li><a href="[[ADMIN:URL]]" title="管理画面">
+							<i class="fa-solid fa-right-to-bracket"></i> 管理画面</a></li>
+
+				</ul>
+			</div>
+		</div>
+		<div class="matuba_seach">[[SEARCHBOX]]</div>
+	</nav>
+
 	<header>
-		<h2><a href="[[HOME:URL:FULL]]">[[FREE:TITLE:MAIN]]</a></h2>
-		<p> [[FREE:TITLE:SUB]] </p> <small>[[FREE:DESCRIPTION]]</small>
+		<h2><a href="[[HOME:URL]]">[[FREE:TITLE:MAIN]]</a></h2>
+		<div class="matuba_head-pull">
+			[[HASHTAG:PULL:JS]]
+			[[CATEGORY:PULL:JS]]
+		</div>
 	</header>
-	<div class="Login-Required">[[QUICKPOST]]</div>
+	<!-- 一覧表示の時だけ見出しを表示 -->
+	<div class="matuba_situation">[[IF(-onelog):[[SITUATION]]:IF]]</div>
+
 	<main>
-		[[TEGALOG]]
-		<!-- ページナビゲーション -->
-		<div>[[NAVI:PREVNEXT]]</div>
-		<div>[[NAVI:PAGELIST]]</div>
-		<div>[[NAVI:TOPPAGE]]</div>
+		<div class="matuba_tegalog">[[TEGALOG]]</div>
+
+		<div class="matuba_pagenavi">
+			<!-- ページナビゲーション -->
+			<div class="matuba_pagenavi-num">
+				[[NAVI:PAGELIST]]
+				[[IF(onelog):[[NAVI:PREVNEXT]]:IF]]
+			</div>
+		</div>
 	</main>
-	<aside>
-		<div>
-			<h3>検索</h3>
-			[[SEARCHBOX:COMPLEX]]
+
+	<!-- 各種機能　必要に応じて変更してください -->
+	<aside id="matuba_dashbord">
+		<h2>DASHBOARD</h2>
+		<div class="matuba_aside-flex">
+			<!-- まとめたい要素ごとにdivで囲む -->
+			<div>
+				<h3>検索</h3>
+				[[SEARCHBOX:COMPLEX]]
+			</div>
+			<div>
+				<h3>フリースペース</h3>
+				[[FREESPACE]]
+			</div>
+			<div>
+				<h3>新着投稿リスト</h3>
+				[[LATESTLIST]]
+			</div>
+			<div>
+				<h3>新着画像リスト</h3>
+				[[IMAGELIST]]
+			</div>
+			<div>
+				<h3>ハッシュタグ</h3>
+				[[HASHTAG:LIST]]
+			</div>
+			<div>
+				<h3>カテゴリ</h3>
+				[[CATEGORY:TREE]]
+			</div>
+			<div>
+				<h3>日付リスト</h3>
+				[[DATEBOX:LIST]]
+			</div>
+			<div>
+				<h3>カレンダー</h3>
+				[[CALENDAR]]
+			</div>
 		</div>
-		<div>
-			<h3>フリースペース</h3>
-			[[FREESPACE]]
-		</div>
-		<div>
-			<h3>新着投稿リスト</h3>
-			[[LATESTLIST]]
-		</div>
-		<div>
-			<h3>新着画像リスト</h3>
-			[[IMAGELIST]]
-		</div>
-		<div>
-			<h3>日付リスト</h3>
-			[[DATEBOX:LIST]]
-		</div>
-		<div>
-			<h3>ハッシュタグ</h3>
-			[[HASHTAG:LIST]]
-		</div>
-		<div>
-			<h3>カテゴリ</h3>
-			[[CATEGORY:TREE]]
-		</div>
-		<div>
-			<h3>カレンダー</h3>
-			[[CALENDAR]]
-		</div>
-		<div> <small> <a href="[[NEWPOST:URL]] ">新規投稿</a>/
-				<a href="[[ADMIN:URL]]  ">管理画面</a>/
-				<a href="[[GALLERY:URL]] ">ギャラリー</a>/
-				<a href="[[RSS:URL]] ">RSS</a> </small> </div>
 	</aside>
+
 	<footer>
 		<!-- Copyright部分はサークル名やサイト名、管理人の名前、西暦などを適切に置き換えてください。 -->
 		<p>Copyright [[FREE:TITLE:MAIN]] [[INFO:LASTUPDATE:Y]].</p>
 
 
-		<p><small>[[VERSION:NEWTAB]] .</small></p>
+		<p><small>[[VERSION:NEWTAB]].</small></p>
 		<p>
 			<small>
 				Theme by <a href="https://takotubo.10rino.net" rel="noreferrer noopener">Takotubo Club</a>.
@@ -99,29 +165,215 @@
 		</p>
 	</footer>
 
+	<!-- クイック投稿フォーム -->
+	<!-- チェックボックス-->
+	<input type="checkbox" name="pst_btn" id="quickpost_bottun" class="matuba_input">
+	<input type="checkbox" name="ce_btn" id="cepick_bottun" class="matuba_input">
+	<input type="checkbox" name="img_btn" id="image_bottun" class="matuba_input">
+
+	<!-- 実際に表示されるボタン
+	非ログイン状態で表示されないように Login-Requiredを付与 -->
+	<div class="matuba_pci_btn  Login-Required">
+
+		<label for="cepick_bottun">
+			<i class="fa-regular fa-face-smile"></i>
+		</label>
+		<label for="image_bottun">
+			<i class="fa-solid fa-image"></i>
+		</label>
+
+		<label for="quickpost_bottun">
+			<i class="fa-solid fa-pen-to-square"></i>
+		</label>
+	</div>
+
+	<!-- ボタンを押すと表示される中身 -->
+	<div class="matuba_quickpost">
+		[[QUICKPOST]]
+	</div>
+
+	<div class="cepicker matuba_cipanel">
+		<div class="cemojipicker"></div>
+	</div>
+	<div class="imgpicker matuba_cipanel">
+		<iframe title="画像リスト" src="?mode=admin&work=images" frameborder="0"></iframe>
+	</div>
+
+	<!-- ここから各種スクリプト -->
 	<!-- jQuery 読み込み -->
 	<script src="https://code.jquery.com/jquery-3.7.0.js"
 		integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous">
 		</script>
 
 	<!-- 記事引用のscript -->
-	[[INCLUDE:tako-0/asset/quote.html]]
+	<script>
+		$(document).ready(function () {
+			// 記事リンクに標準で付加されているpostidlinkをトリガーにする
+			$('.postidlink').each(function (index) {
+				var linkElement = $(this);
+				// そのあとに<div class="qpost-番号">を加える。
+				// qpost=QuotePostです。クラス部分はお好みで変更可
+				var newDivElement = $('<div>').addClass('qpost-' + (index + 1));
 
-	<!-- カスタム絵文字、画像をスキン側で差し込みやすくする -->
-	[[INCLUDE:tako-0/asset/ce_js.html]]
+				// リンク要素の後に新しい div 要素を挿入
+				linkElement.after(newDivElement);
+
+				var linkURL = linkElement.attr('href');
+
+				$.ajax({
+					url: linkURL,
+					type: 'GET',
+					dataType: 'html',
+					success: function (html) {
+						var tempDiv = $('<div>').html(html);
+
+						// リンク先から取得した内容から<div class="comment">のテキストを抽出
+						// comment以外のクラス指定の場合はfind('.comment')の部分を書き換え
+						// プレーンテキストで表示する場合は.html()を.text()に書き換え
+						var commentContent = tempDiv.find('.comment').html();
+
+						// 加える文字列を制限して350文字までに切り詰め
+						var maxLength = 350;
+						var limitedContent = commentContent.length > maxLength ?
+							// 省略する場合は省略記号...を追加
+							commentContent.substring(0, maxLength) + '...' :
+							commentContent;
+
+						// 新しい div 要素にリンク先の内容を追加
+						// プレーンテキストで表示する場合は.html(略)を.text(略)に書き換え
+						newDivElement.html(limitedContent);
+					},
+					error: function (error) {
+						console.error('エラー:', error);
+					}
+				});
+			});
+		});
+	</script>
+
+	<!-- カスタム絵文字、画像をスキン側で差し込みやすくする-->
+	<script>
+		$(document).ready(function () {
+			// サーバーサイドのスクリプトから画像ファイルリストを取得
+			$.ajax({
+				url: 'tako-0/asset/get_cemoji.php', // tegalog.cgiからの相対パスを指定
+				dataType: 'json',
+				success: function (data) {
+					// 取得したファイルリストを処理
+					$.each(data, function (index, filename) {
+
+						// 拡張子を取り除いたファイル名を生成
+						var fileBaseName = filename.split('.').slice(0, -1).join('.');
+
+						// 画像の<img>要素を作成し、alt属性を設定して<div class="cemojipicker">に追加
+						// 必要な場合これもtegalog.cgiからの相対リンクで指定する
+						var imgSrc = 'emoji/' + filename;
+
+						// alt属性を指定された形式に設定
+						var altText = '[:' + fileBaseName + ':]';
+
+						var img = $("<img>").attr("src", imgSrc).attr("alt", altText);
+						img.appendTo(".cemojipicker");
+
+						// 画像をクリックしたときの処理
+						img.click(function () {
+							// クリックされた画像のalt属性の値を取得
+							var altText = $(this).attr("alt");
+
+							// <textarea class="tegalogpost">のDOM要素を取得
+							var textarea = document.querySelector(".tegalogpost");
+
+							// カーソルの位置を取得
+							var cursorPos = textarea.selectionStart;
+
+							// テキストエリアの内容を取得
+							var text = textarea.value;
+
+							// カーソル位置に新しいテキストを挿入
+							var newText = text.slice(0, cursorPos) + altText + text.slice(cursorPos);
+
+							// テキストエリアに新しいテキストを設定
+							textarea.value = newText;
+						});
+					});
+				}
+			});
+		});
+	</script>
 
 	<!-- ダークモードとライトモードの切り替え -->
-	[[INCLUDE:tako-0/asset/darkmode.html]]
+	<script>
+		// Check if the user prefers dark mode
+		const prefersDarkMode = window.matchMedia(
+			"(prefers-color-scheme: dark)",
+		).matches;
+
+		// Set the initial theme based on user preference
+		const initialTheme = prefersDarkMode ? "dark" : "light";
+
+		// Check for saved theme preference or use the initial theme
+		const savedTheme = localStorage.getItem("theme");
+		const theme = savedTheme || initialTheme;
+
+		// Apply the theme to the HTML element
+		document.documentElement.setAttribute("data-theme", theme);
+
+		// Function to toggle between light and dark mode
+		function toggleTheme() {
+			const currentTheme =
+				document.documentElement.getAttribute("data-theme");
+			const newTheme = currentTheme === "light" ? "dark" : "light";
+
+			// Save the theme preference to localStorage
+			localStorage.setItem("theme", newTheme);
+
+			// Apply the new theme to the HTML element
+			document.documentElement.setAttribute("data-theme", newTheme);
+		}
+
+		// Event listener for a button click to toggle the theme
+		document
+			.getElementById("toggle-theme-button")
+			.addEventListener("click", toggleTheme);
+	</script>
 
 	<!-- ローディング画面 -->
-	[[INCLUDE:tako-0/asset/load.html]]
+	<script>
+		window.onload = function () {
+			const spinner = document.getElementById('loading');
+			spinner.classList.add('loaded');
+		}
+	</script>
 
 	<!-- クリップボードにURLをコピーする -->
-	[[INCLUDE:tako-0/asset/clipboad.html]]
+	<!-- clipboard.js -->
+	<script src="https://unpkg.com/clipboard@2/dist/clipboard.min.js"></script>
+	<script>new ClipboardJS('.post-share');</script>
+	<script>
+		const clipboard = new ClipboardJS('.post-share');
 
+		const btns = document.querySelectorAll('.post-share');
+
+		for (let i = 0; i < btns.length; i++) {
+			btns[i].addEventListener('mouseleave', clearTooltip);
+		}
+		function clearTooltip(e) {
+			e.currentTarget.setAttribute('class', 'post-share');
+		}
+
+		function showTooltip(elem) {
+			elem.setAttribute('class', 'post-share tooltip');
+		}
+
+		clipboard.on('success', function (e) {
+			showTooltip(e.trigger);
+		});
+	</script>
 	<!-- lightbox以外を使う場合ここを書き換える -->
 	[[JS:LIGHTBOX]]
 
+	<!-- 下へ移動するためのリンク -->
+	<div id="matuba_bottom"></div>
 </body>
 
 </html>

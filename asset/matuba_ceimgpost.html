@@ -1,0 +1,236 @@
+<!-- チェックボックス-->
+<input type="checkbox" name="pst_btn" id="quickpost_bottun" class="matuba_input">
+<input type="checkbox" name="ce_btn" id="cepick_bottun" class="matuba_input">
+<input type="checkbox" name="img_btn" id="image_bottun" class="matuba_input">
+
+<!-- ボタン -->
+<div class="matuba_pci_btn  Login-Required">
+
+    <label for="cepick_bottun">
+        <i class="fa-regular fa-face-smile"></i>
+    </label>
+    <label for="image_bottun">
+        <i class="fa-solid fa-image"></i>
+    </label>
+
+    <label for="quickpost_bottun">
+        <i class="fa-solid fa-pen-to-square"></i>
+    </label>
+</div>
+
+
+<!-- 中身 -->
+
+<div class="matuba_quickpost">
+    [[QUICKPOST]]
+</div>
+
+<div class="cepicker matuba_cipanel">
+    <div class="cemojipicker"></div>
+    <!--
+    <iframe title="カスタム絵文字" src="?mode=admin&work=cemoji" frameborder="0"></iframe> -->
+</div>
+<div class="imgpicker matuba_cipanel">
+    <iframe title="画像リスト" src="?mode=admin&work=images" frameborder="0"></iframe>
+
+</div>
+
+<style>
+    /*全体の調整*/
+    input.matuba_input {
+        display: none;
+    }
+
+    /*ボタン*/
+    .matuba_pci_btn {
+        display: inline-block;
+        position: fixed;
+        right: 0;
+        top: calc(100% - 4.2rem);
+        z-index: 9998;
+        padding: 5px 10px;
+        font-size: 2rem;
+        background-color: var(--nc-bg-2);
+        border-width: 2px 0 2px 2px;
+        border-style: solid;
+        border-color: var(--nc-bg-3);
+        transition: 0.3s ease;;
+    }
+
+    input[id="quickpost_bottun"]:checked~.matuba_pci_btn {
+        top: 0;
+        border-width: 0 0 2px 2px;
+        font-size: 1.2em;
+
+    }
+
+    input[id="quickpost_bottun"]:checked~.matuba_pci_btn>label[for="cepick_bottun"],
+    input[id="quickpost_bottun"]:checked~.matuba_pci_btn>label[for="image_bottun"] {
+        display: inline-block;
+    }
+    .matuba_pci_btn>label[for="cepick_bottun"],
+    .matuba_pci_btn>label[for="image_bottun"]{
+        display: none;
+    }
+
+    .matuba_pci_btn label {
+        padding: 2px 5px 2px 5px;
+        border-radius: 3px;
+        display: inline-block;
+        cursor: pointer;
+
+    }
+
+    input[id="quickpost_bottun"]:checked~.matuba_pci_btn>label[for="quickpost_bottun"] {
+        color: var(--nc-lk-tx);
+        background-color: var(--nc-lk-1);
+        opacity: 0.7;
+    }
+
+    input[id="cepick_bottun"]:checked~.matuba_pci_btn>label[for="cepick_bottun"] {
+        color: var(--nc-lk-tx);
+        background-color: var(--nc-lk-1);
+        opacity: 0.7;
+    }
+
+    input[id="image_bottun"]:checked~.matuba_pci_btn>label[for="image_bottun"] {
+        color: var(--nc-lk-tx);
+        background-color: var(--nc-lk-1);
+        opacity: 0.7;
+    }
+
+    .matuba_quickpost {
+        margin: 0;
+        position: fixed;
+        top:  100%;
+        right: 0;
+        left: 0;
+        z-index: 9996;
+        height: 100lvh;
+        background-color: var(--nc-bg-2);
+        transition: 0.3s;
+    }
+
+    .matuba_quickpost form {
+        margin: 3.2rem auto;
+        width: calc(100% - 10px);
+        height: calc(100% - 10px);
+
+        max-width: 900px;
+        max-height: 900px;
+    }
+
+    input[id="quickpost_bottun"]:checked~.matuba_quickpost {
+        top: 0;
+    }
+
+    /*投稿フォームが出ているときはスクロール不可*/
+    html:has(input[id="quickpost_bottun"]:checked) {
+        overflow: hidden;
+    }
+
+    .matuba_cipanel {
+        display: block;
+        position: fixed;
+        bottom: 0;
+        z-index: 9997;
+
+        transition: 0.5s;
+
+        width: 100%;
+        max-width: 400px;
+        height: 50lvh;
+        overflow-y: hidden;
+        overflow-x: hidden;
+        background-color: var(--nc-bg-2);
+        border-style: solid;
+        border-color: var(--nc-bg-3);
+
+    }
+
+    .matuba_cipanel iframe {
+        width: 100%;
+        height: 100%;
+    }
+
+    .cepicker {
+        left: -100%;
+        border-width: 2px 2px 0 0;
+    }
+
+    input[id="quickpost_bottun"]:checked~#cepick_bottun:checked~.cepicker {
+        left: 0;
+    }
+
+    .imgpicker {
+        border-width:2px 0 0 2px;
+        right: -100%;
+    }
+
+    input[id="quickpost_bottun"]:checked~#image_bottun:checked~.imgpicker {
+        right: 0;
+    }
+
+        /*表示する絵文字のサイズ*/
+        .cemojipicker img {
+        height: 2em;
+        margin: 4px;
+        transition: 0.3s;
+    }
+
+    /*絵文字をクリックしたらちょっと小さくなる*/
+    .cemojipicker img:active {
+        transform: scale(0.8);
+    }
+</style>
+
+<!-- カスタム絵文字ピッカーのスクリプト
+	基本的に変更しなくていいですが、phpファイルの場所を移動した場合は適宜パスの変更をしてください -->
+    <script>
+        $(document).ready(function () {
+            // サーバーサイドのスクリプトから画像ファイルリストを取得
+            $.ajax({
+                url: 'tako-0/asset/get_cemoji.php', // tegalog.cgiからの相対パスを指定
+                dataType: 'json',
+                success: function (data) {
+                    // 取得したファイルリストを処理
+                    $.each(data, function (index, filename) {
+    
+                        // 拡張子を取り除いたファイル名を生成
+                        var fileBaseName = filename.split('.').slice(0, -1).join('.');
+    
+                        // 画像の<img>要素を作成し、alt属性を設定して<div class="cemojipicker">に追加
+                        // 必要な場合これもtegalog.cgiからの相対リンクで指定する
+                        var imgSrc = 'emoji/' + filename;
+    
+                        // alt属性を指定された形式に設定
+                        var altText = '[:' + fileBaseName + ':]';
+    
+                        var img = $("<img>").attr("src", imgSrc).attr("alt", altText);
+                        img.appendTo(".cemojipicker");
+    
+                        // 画像をクリックしたときの処理
+                        img.click(function () {
+                            // クリックされた画像のalt属性の値を取得
+                            var altText = $(this).attr("alt");
+    
+                            // <textarea class="tegalogpost">のDOM要素を取得
+                            var textarea = document.querySelector(".tegalogpost");
+    
+                            // カーソルの位置を取得
+                            var cursorPos = textarea.selectionStart;
+    
+                            // テキストエリアの内容を取得
+                            var text = textarea.value;
+    
+                            // カーソル位置に新しいテキストを挿入
+                            var newText = text.slice(0, cursorPos) + altText + text.slice(cursorPos);
+    
+                            // テキストエリアに新しいテキストを設定
+                            textarea.value = newText;
+                        });
+                    });
+                }
+            });
+        });
+    </script>

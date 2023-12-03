@@ -1,20 +1,31 @@
-
 :root {
-    --black-1: #0d0d0d;
-    --black-2: #1f1f1f;
-    --black-3: #313131;
+  --black-1: #01413b;
+  --black-2: #092f2b;
+  --black-3: #041a18;
 
-    --white-1: #fafafa;
-    --white-2: #eff2f6;
-    --white-3: #e5e7eb;
-    
-    --primary-1: #2FA0DF;
-    --primary-2: #006BB8;
-    --primary-text: var(--white-1);
-    
-    --secontary-1: #FEE3B3;
-    --secontary-2: #dbc39a;
-    --secontary-text: #0c3f46;
+  --white-1: #fffcf3;
+  --white-2: #faf5e6;
+  --white-3: #e5e1d4;
+
+  --primary-1: #a1d4b3;
+  --primary-2: #36734d;
+  --primary-text: var(--nc-bg-1);
+
+  --secontary-1: #fac370;
+  --secontary-2: #f5b759;
+  --secontary-text: var(--white-1);
+
+  /* 鍵付き投稿の入力間違い、下書き投稿のラベル */
+  /*背景色*/
+  --warning: tomato;
+  /*文字色*/
+  --warning-text: var(--white-2);
+
+  /*鍵付き投稿のパスワード入力済みのラベル*/
+  /*背景色*/
+  --success: mediumseagreen;
+  /*文字色*/
+  --success-text: var(--white-2);
 }
 
 
@@ -22,19 +33,19 @@
 [data-theme="light"],
 :root:not([data-theme="dark"]) {
 
-    --nc-font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    --nc-font-mono: Consolas, monaco, "Ubuntu Mono", "Liberation Mono", "Courier New", Courier, monospace;
+  --nc-font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --nc-font-mono: Consolas, monaco, "Ubuntu Mono", "Liberation Mono", "Courier New", Courier, monospace;
 
-    --nc-tx-1: var(--black-1);
-    --nc-tx-2: var(--black-2);
-    --nc-bg-1: var(--white-1);
-    --nc-bg-2: var(--white-2);
-    --nc-bg-3: var(--white-3);
-    --nc-lk-1: var(--primary-1);
-    --nc-lk-2: var(--primary-2);
-    --nc-lk-tx: var(--primary-text);
-    --nc-ac-1: var(--secontary-1);
-    --nc-ac-tx: var(--secontary-text);
+  --nc-tx-1: var(--black-1);
+  --nc-tx-2: var(--black-2);
+  --nc-bg-1: var(--white-1);
+  --nc-bg-2: var(--white-2);
+  --nc-bg-3: var(--white-3);
+  --nc-lk-1: var(--primary-2);
+  --nc-lk-2: var(--primary-1);
+  --nc-lk-tx: var(--primary-text);
+  --nc-ac-1: var(--secontary-1);
+  --nc-ac-tx: var(--secontary-text);
 }
 
 /* ダークモード*/
@@ -55,14 +66,14 @@
 
 /* ダークモード*/
 [data-theme="dark"] {
-    --nc-tx-1: var(--white-1);
-    --nc-tx-2: var(--white-2);
-    --nc-bg-1: var(--black-1);
-    --nc-bg-2: var(--black-2);
-    --nc-bg-3: var(--black-3);
-    --nc-lk-1: var(--primary-1);
-    --nc-lk-2: var(--primary-2);
-    --nc-lk-tx: var(--primary-text);
-    --nc-ac-1: var(--secontary-2);
-    --nc-ac-tx: var(--secontary-text);
+  --nc-tx-1: var(--white-1);
+  --nc-tx-2: var(--white-2);
+  --nc-bg-1: var(--black-1);
+  --nc-bg-2: var(--black-2);
+  --nc-bg-3: var(--black-3);
+  --nc-lk-1: var(--primary-1);
+  --nc-lk-2: var(--primary-2);
+  --nc-lk-tx: var(--primary-text);
+  --nc-ac-1: var(--secontary-2);
+  --nc-ac-tx: var(--secontary-text);
 }

@@ -1,0 +1,19 @@
+:root {
+    /*ナビメニューで開くモード・管理画面のパネル*/
+    --matuba_menu_panel: 10;
+    /*ナビメニューをレイヤーの上に*/
+    --nav: 9;
+
+
+    /*一覧表示で、固定投稿のみピン刺しする*/
+    --matuba-post-status-fixed: 3;
+    /*投稿のリンクを重ねる*/
+    --matuba_post_wrap: 2;
+    /*ドロップシャドウが隣の要素と重ならないようにする*/
+    --matuba_post_sticky: 1;
+
+
+    /*鍵投稿の背景に鍵マークを表示する*/
+    --matuba_post-status-lock:-1;
+
+}
