@@ -1,4 +1,4 @@
-/* -------------------- テキスト(記事の中身)関連 -------------------- */
+/* -------------------- 好みに合わせて変更したほうが良さそうな部分 -------------------- */
 /*  汎用装飾(てがろぐ専用記法で書かれた文字）  */
 /* E:強調(Emphasis) */
 .decorationE {
@@ -197,7 +197,6 @@
 }
 
 /*NSFWフラグ付き画像のフィルター（モノクロ化＋ぼかし）*/
-/*好みで変更してください*/
 img.nsfw {
     -webkit-filter: grayscale(1) blur(5px);
     filter: grayscale(1) blur(5px);
@@ -219,7 +218,7 @@ img.nsfw {
     height: 100%;
 }
 
-
+/*ここからスキンに関する設定群*/
 /* ---------------------- 全体の設定 ---------------------- */
 
 /*スクロールをスムーズにする*/
@@ -957,12 +956,10 @@ input[id="quickpost_bottun"]:checked~#image_bottun:checked~.imgpicker {
     height: 100vh;
     transition: all 1s;
     background-color: var(--nc-lk-1);
-
     position: fixed;
     top: 0;
     left: 0;
     z-index: var(--loading);
-
     /*真ん中寄せ*/
     display: flex;
     align-items: center;
@@ -991,7 +988,6 @@ input[id="quickpost_bottun"]:checked~#image_bottun:checked~.imgpicker {
         opacity: 0;
         transform: scale(0.8);
         transform: rotate(0deg);
-
     }
 
     25%{
@@ -1000,7 +996,6 @@ input[id="quickpost_bottun"]:checked~#image_bottun:checked~.imgpicker {
     50% {
         opacity: 1;
         transform: scale(1);
-
     }
 
     100% {

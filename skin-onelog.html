@@ -10,6 +10,7 @@
 		</div>
 		<div class="matuba_one-pic">
 			[[ONEPICT:1]]
+			<!-- 好きな画像に差替える（tegalog.cgiからの相対リンク） -->
 			<img src="skin-matuba/matuba.png" class="dummyimg" alt="投稿に画像が含まれないときに表示するダミー">
 		</div>
 	</div>
@@ -19,15 +20,12 @@
 
 [[IF(onelog):
 <!-- 投稿の単独ページにいる時 -->
-<!-- 投稿の状態（鍵付き・固定投稿など）によって表示を変えたいときのクラス（POSTSTATUS）
-	不要なら削除して大丈夫 -->
 <div class="matuba_post-one [[POSTSTATUS]]">
 	<div class="matuba_post-status">
 		<div class="matuba_post-status-lock"><i class="fa-solid fa-lock"></i></div>
 		<div class="matuba_post-status-draft">この記事は下書き状態です</div>
 	</div>
 	<div class="post-header">
-		<!-- 投稿日時（デフォルトスキンを使って投稿単体を表示するための固有URL） -->
 		<div class="matuba_post-date">[[DATE:Y/M/D h:m]] <small>（[[DATE:A]]）</small>
 			<span class="matuba_post-new">[[NEW]]</span>
 			<span class="matuba_length">[[LENGTH]]文字</span>
@@ -47,7 +45,6 @@
 			<p>投稿者：[[USERICON]] [[USERNAME]]
 				<span class="matba_user-intro">[[USERINTRO]]</span>
 			</p>
-
 		</div>
 
 		<div class="matuba_share">

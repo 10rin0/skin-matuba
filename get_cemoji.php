@@ -1,6 +1,6 @@
 <?php
 // ここに許可するドメイン（自分のサイトのURL）を追加してください
-$allowedDomain = 'http://localhost';
+$allowedDomain = 'https://example.com';
 
 // Refererヘッダーを取得
 $referer = $_SERVER['HTTP_REFERER'];
