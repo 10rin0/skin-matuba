@@ -2,9 +2,9 @@
 /*  汎用装飾(てがろぐ専用記法で書かれた文字）  */
 /* E:強調(Emphasis) */
 .decorationE {
-    font-size: 1.2em;
-    font-weight: bold;
     color: var(--nc-lk-1);
+    font-weight: bold;
+    font-size: 1.2em;
 }
 
 /* B:太字(Bold) */
@@ -20,38 +20,35 @@
 
 /* Q:引用(Quote) */
 .decorationQ {
-    /*この部分は固定*/
-    display: block;
-
     position: relative;
+    display: block;
     margin: 2rem 1rem;
     padding: 1.5rem;
     background: var(--nc-bg-2);
 }
 
 .decorationQ::before {
-    font-family: "Font Awesome 5 Free";
-    content: '\f10d';
-    font-weight: 900;
-    display: inline-block;
     position: absolute;
     top: -1rem;
     left: -0.8rem;
-    font-size: 2rem;
+    display: inline-block;
     color: var(--nc-ac-1);
+    content: '\f10d';
+    font-weight: 900;
+    font-size: 2rem;
+    font-family: "Font Awesome 5 Free";
 }
 
-/* 標準で付加されてしまう引用符を無効にする（この部分は固定） */
 .decorationQ::after {
-    font-family: "Font Awesome 5 Free";
+    position: absolute;
+    right: -0.8rem;
+    bottom: -1rem;
+    display: inline-block;
+    color: var(--nc-ac-1);
     content: '\f10e';
     font-weight: 900;
-    display: inline-block;
-    position: absolute;
-    bottom: -1rem;
-    right: -0.8rem;
     font-size: 2rem;
-    color: var(--nc-ac-1);
+    font-family: "Font Awesome 5 Free";
 }
 
 /* 引用直後の改行を無効化する（この部分は固定） */
@@ -83,17 +80,17 @@
 /* ボタン枠の装飾(共通) */
 .readmorebutton {
     display: block;
-    width: 100%;
+    box-sizing: border-box;
     padding: 0.5em;
+    width: 100%;
+    border: 0;
+    border-radius: 4px;
+    background: var(--nc-lk-1);
+    color: var(--nc-lk-tx);
     text-align: center;
     text-decoration: none;
     white-space: nowrap;
-    border: 0;
-    border-radius: 4px;
-    box-sizing: border-box;
     cursor: pointer;
-    background: var(--nc-lk-1);
-    color: var(--nc-lk-tx);
     transition: 0.3s;
 }
 
@@ -101,7 +98,6 @@
 .readmorebutton:hover {
     background: var(--nc-lk-2);
     color: var(--nc-lk-tx);
-
 }
 
 /* 開く（続きを読む）ボタン専用の装飾 */
@@ -109,9 +105,11 @@
 
 /* 閉じる（畳む）ボタン専用の装飾 */
 .readmorebutton.readmoreclose {
+    display: inline-block;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
     width: fit-content;
     font-size: 0.8em;
-    display: inline-block;
 }
 
 /* 鍵付き(パスワード保護)投稿に表示される鍵入力フォームの装飾 */
@@ -120,11 +118,13 @@
 /* 鍵違いエラーの表示 */
 .passkeyerror {
     display: block;
+    margin: 0 0 0.5em;
+    padding: 2px 0.5em;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
     background-color: var(--warning);
     color: var(--warning-text);
-    width: fit-content;
-    padding: 2px 0.5em;
-    margin: 0 0 0.5em;
     border-radius: 4px;
 }
 
@@ -139,30 +139,27 @@
 
 /* ---------------------- 投稿(ひとつひとつの記事)関連 ---------------------- */
 
-
 /*検索語のハイライト*/
-/*好みで変更してください*/
 .searchword {
     background: linear-gradient(transparent 60%, var(--nc-ac-1) 60%);
 }
 
 /*固定投稿を示す表示*/
-/*好みで変更してください*/
 .fixed {}
 
 
 /*記事にあるユーティリティリンクの装飾*/
 /*好みで変更してください*/
 .utilitylinks {
-    padding: 6px 12px;
+    box-sizing: border-box;
     margin-bottom: 0.5rem;
-    background: var(--nc-bg-2);
-    color: var(--nc-tx-2);
+    padding: 6px 12px;
     border: 1px solid var(--nc-bg-3);
     border-radius: 4px;
-    font-size: 0.85em;
+    background: var(--nc-bg-2);
     box-shadow: none;
-    box-sizing: border-box;
+    color: var(--nc-tx-2);
+    font-size: 0.85em;
 }
 
 /* -------------------- 埋め込み関連 --------------------  */
@@ -175,9 +172,9 @@
 /*新着画像リストをグリッド表示・サイズの設定*/
 .imagelistitem {
     display: inline-flex;
+    margin: 2px;
     width: 120px;
     height: 120px;
-    margin: 2px;
 }
 
 /*新着画像リストをサムネイル表示*/
@@ -187,7 +184,6 @@
     -o-object-fit: cover;
     object-fit: cover;
     aspect-ratio: 1/1;
-
 }
 
 /*NSFW 画像のぼかしのはみ出しを防ぐ*/
@@ -220,7 +216,6 @@ img.nsfw {
 
 /*ここからスキンに関する設定群*/
 /* ---------------------- 全体の設定 ---------------------- */
-
 /*スクロールをスムーズにする*/
 html {
     scroll-behavior: smooth;
@@ -228,8 +223,8 @@ html {
 
 /*全体の表示サイズ*/
 body {
-    max-width: 1280px;
     padding: 2rem 1rem;
+    max-width: 1280px;
 }
 
 /*クイック投稿フォームのボタン以外の送信ボタン（検索とか）の
@@ -245,34 +240,35 @@ input {
 
 /* ----- 一番上のナビゲーションエリア ----- */
 nav {
-    display: flex;
     position: fixed;
     top: 0;
-    left: 0;
     right: 0;
+    left: 0;
     z-index: var(--nav);
-    justify-content: space-between;
+    display: flex;
     align-items: center;
+    justify-content: space-between;
     margin: 0;
     padding: 10px 20px;
-    background-color: var(--nc-bg-2);
     border-bottom: 1px solid var(--nc-bg-3);
+    background-color: var(--nc-bg-2);
 }
 
 /*左側のメニューボタンまわりのデザイン*/
 .matuba_menu-wrap {
     display: flex;
-    flex-wrap: nowrap;
     align-items: center;
+    flex-wrap: nowrap;
     gap: 5px;
+
 }
 
 .matuba_menu_logo {
+    overflow: hidden;
     margin: 0;
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    overflow: hidden;
 }
 
 /*メニューボタン*/
@@ -281,10 +277,10 @@ input[id="matuba_menu"] {
 }
 
 .matuba_menu_btn {
+    display: inline-block;
+    box-sizing: border-box;
     padding: 0.4em 0.5em;
     border-radius: 4px;
-    box-sizing: border-box;
-    display: inline-block;
     cursor: pointer;
     transition: 0.4s;
 }
@@ -296,16 +292,16 @@ input[id="matuba_menu"]:checked~.matuba_menu_btn {
 
 /*開いたメニューの中*/
 .matuba_menu_panel {
-    display: none;
     position: fixed;
     top: 50px;
     left: 4rem;
     z-index: var(--matuba_menu_panel);
-    width: fit-content;
+    display: none;
     padding: 0.5em;
-    background: var(--nc-bg-2);
+    width: fit-content;
     border: 1px solid var(--nc-bg-3);
     border-radius: 4px;
+    background: var(--nc-bg-2);
 }
 
 /*選択されてるとき表示*/
@@ -315,15 +311,15 @@ input[id="matuba_menu"]:checked~.matuba_menu_panel {
 
 /*リンクの下線を消す*/
 .matuba_menu_panel a {
-    text-decoration: none;
     color: var(--nc-tx-1);
+    text-decoration: none;
 }
 
 /*こまごま調整*/
 .matuba_menu_panel ul {
-    list-style: none;
     margin: 0;
     padding: 0.5em 0.3em;
+    list-style: none;
     font-size: 0.8em;
 }
 
@@ -347,8 +343,8 @@ nav form, nav p {
 
 /*検索フォームの入力欄の色*/
 nav input {
-    background-color: var(--nc-bg-1);
     max-width: 8rem;
+    background-color: var(--nc-bg-1);
 }
 
 /*「表示中のXXXに限定して検索」を小さめに表示*/
@@ -359,13 +355,14 @@ nav input {
 /* ----- 全体のヘッダー ----- */
 header {
     position: relative;
-    padding-top: 150px;
-    background: none;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    padding-top: 150px;
     border: none;
+    background: none;
 }
+
 
 header a {
     text-decoration: none;
@@ -386,17 +383,20 @@ header a {
 /* ----- 条件に応じた見出しの設定 ----- */
 .matuba_situation {
     margin: 2em 0;
-    color: var(--nc-tx-2);
-    font-size: 0.85em;
     padding-bottom: 0.5em;
     border-bottom: 1px solid var(--nc-bg-3);
+    color: var(--nc-tx-2);
+    font-size: 0.85em;
 }
+
 
 /* ----- ダッシュボードの部分 ----- */
 #matuba_dashbord {
-    padding-top: 5rem;
-    width: fit-content;
     margin: 0 auto;
+    padding-top: 5rem;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
 }
 
 .matuba_aside-flex {
@@ -408,17 +408,17 @@ header a {
 
 .matuba_aside-flex div {
     padding: 5px 10px;
+    max-width: 380px;
+    width: 100%;
     border: 1px solid var(--nc-bg-3);
     border-radius: 5px;
-    width: 100%;
-    max-width: 380px;
 }
 
 /*----------カレンダー要素全体----------*/
 .calendar {
     box-sizing: border-box;
-    width: 100%;
     max-width: 500px;
+    width: 100%;
     border-collapse: collapse;
     text-align: center;
     line-height: 2.5;
@@ -433,7 +433,6 @@ table.calendar :is(th, td) {
     font-weight: bold;
 }
 
-
 /*-----●●年●月の部分-----*/
 .calendar caption {
     text-align: center;
@@ -444,7 +443,6 @@ table.calendar :is(th, td) {
 
 /*-----曜日の見出し行-----*/
 .calendar tr.daysofweek th {
-    /*曜日名と日付セルの間の境界線*/
     border-bottom: 2px solid;
     font-size: 1.2em;
     line-height: 2.3;
@@ -460,26 +458,26 @@ table.calendar :is(th, td) {
 /* ----- ページナビゲーション要素 ----- */
 .matuba_pagenavi {
     margin: 3rem auto 2rem;
-    width: 100%;
     max-width: 600px;
+    width: 100%;
 }
 
 .matuba_pagenavi-num {
     display: flex;
+    overflow: hidden;
     justify-content: space-between;
     border-radius: 5px;
-    overflow: hidden;
 }
 
 /*ページ番号の装飾*/
 .matuba_pagenavi-num a {
-    padding: 4x 2px;
-    text-decoration: none;
     box-sizing: border-box;
+    padding: 4x 2px;
+    width: 100%;
     background-color: var(--nc-lk-1);
     color: var(--nc-lk-tx);
-    width: 100%;
     text-align: center;
+    text-decoration: none;
 }
 
 /*ページ番号のをホバーしたときのみの装飾*/
@@ -489,8 +487,8 @@ table.calendar :is(th, td) {
 
 /*今いるページの番号の装飾*/
 a.pagenumhere {
-    color: var(--nc-ac-tx);
     background-color: var(--nc-ac-1);
+    color: var(--nc-ac-tx);
 }
 
 /*今いるページの番号をホバーしたときのみの装飾*/
@@ -520,14 +518,12 @@ textarea.tegalogpost {
     background: var(--nc-bg-1);
 }
 
-
 /*そのままだと引用やリストのボタンがガタガタになるので高さを合わせる*/
 .decoBtns input {
-    vertical-align: middle;
-    height: 2.5rem;
     margin: 2px;
+    height: 2.5rem;
+    vertical-align: middle;
 }
-
 
 /* ---------------------- 投稿一覧表示（body.onelog以外での表示） ---------------------- */
 /*投稿リストのページで付箋型で表示する*/
@@ -554,13 +550,13 @@ p.dateseparator {
 
 /*投稿をクリックしたら投稿先のページにジャンプする（lightboxが有効になってしまうのの防止）*/
 .matuba_post_wrap {
-    display: block;
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
     z-index: var(--matuba_post_wrap);
+    display: block;
 }
 
 /*投稿一つ一つの内側*/
@@ -568,14 +564,15 @@ p.dateseparator {
     position: relative;
     width: 100%;
     height: 100%;
-    color: var(--nc-tx-2);
-    background-color: var(--nc-bg-2);
     border: 1px solid var(--nc-bg-3);
+    background-color: var(--nc-bg-2);
+    color: var(--nc-tx-2);
     transition: 0.3s;
 }
 
 /*ホバーしたら色が透ける*/
 .matuba_post_wrap:hover+.matuba_post_sticky {
+    -webkit-filter: opacity(0.5) drop-shadow(0px 0px 20px var(--nc-bg-3));
     filter: opacity(0.5) drop-shadow(0px 0px 20px var(--nc-bg-3));
     z-index: var(--matuba_post_sticky);
 }
@@ -590,17 +587,18 @@ p.dateseparator {
 .matuba_one-pic {
     position: absolute;
     top: 70px;
-    left: 5px;
     right: 5px;
     bottom: 5px;
+    left: 5px;
     overflow: hidden;
 }
 
 .matuba_one-pic img {
-    object-fit: cover;
+    margin: 0;
     min-height: 100px;
     transform: scale(1.5);
-    margin: 0;
+    -o-object-fit: cover;
+    object-fit: cover;
 }
 
 /*投稿内に画像が1枚も含まれないとき、ダミー画像を表示する*/
@@ -621,11 +619,11 @@ p.dateseparator {
 /*投稿の条件によって表示を変更*/
 /*固定投稿が対象*/
 .matuba-post-status-fixed {
-    display: none;
     position: absolute;
     top: -0.8em;
     right: 0;
     z-index: var(--matuba-post-status-fixed);
+    display: none;
     font-size: 1.2em;
 }
 
@@ -635,13 +633,13 @@ p.dateseparator {
 
 /*鍵付き投稿の、鍵入力前が対象*/
 .matuba_post-status-lock {
-    display: none;
-    font-size: 250px;
     position: fixed;
     top: 3rem;
     left: 2rem;
-    opacity: 0.1;
     z-index: var(--matuba_post-status-lock);
+    display: none;
+    font-size: 250px;
+    opacity: 0.1;
 }
 
 .logstatus-lock .matuba_post-status-lock {
@@ -656,11 +654,11 @@ p.dateseparator {
 /*下書き投稿が対象*/
 .matuba_post-status-draft {
     display: none;
+    margin: 0.4rem 0;
     padding: 0.5rem 1rem;
+    border-radius: 5px;
     background: var(--warning);
     color: var(--warning-text);
-    margin: 0.4rem 0;
-    border-radius: 5px;
 }
 
 .logstatus-draft .matuba_post-status-draft {
@@ -670,26 +668,26 @@ p.dateseparator {
 /*投稿ひとつひとつの内容*/
 /*投稿のヘッダー（日付などが出る）*/
 .matuba_post-one .post-header {
-    padding-bottom: 0.5em;
-    margin-bottom: 1.5rem;
-    border-bottom: 1px solid var(--nc-tx-2);
     display: flex;
+    align-items: flex-end;
     flex-wrap: wrap;
     justify-content: space-between;
-    align-items: flex-end;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid var(--nc-tx-2);
 }
 
 /*編集・削除ボタン*/
 .matuba_post-edit-delete a {
-    font-size: 0.8em;
     display: inline-block;
+    box-sizing: border-box;
     padding: 6px 12px;
+    border: 0;
+    border-radius: 4px;
     text-align: center;
     text-decoration: none;
     white-space: nowrap;
-    border: 0;
-    border-radius: 4px;
-    box-sizing: border-box;
+    font-size: 0.8em;
     cursor: pointer;
 }
 
@@ -711,8 +709,8 @@ p.dateseparator {
 
 /*投稿のフッター（共有ボタン、カテゴリなど）*/
 .matuba_post-one .post-fotter {
-    padding: 1.5rem 0;
     margin-top: 1.5rem;
+    padding: 1.5rem 0;
     border-top: 1px solid var(--nc-tx-2);
 }
 
@@ -726,9 +724,9 @@ p.dateseparator {
 /*投稿者のアイコン*/
 .matuba_post-one .post-fotter .matuba_user img {
     margin: 0 5px;
-    border-radius: 50%;
     width: 2rem;
     height: 2rem;
+    border-radius: 50%;
 }
 
 /*投稿者の情報*/
@@ -736,8 +734,8 @@ p.dateseparator {
     display: inline-block;
     margin: 5px;
     padding: 0 1rem;
-    font-size: 0.85em;
     background-color: var(--nc-bg-2);
+    font-size: 0.85em;
 }
 
 /*共有ボタン*/
@@ -755,29 +753,27 @@ p.dateseparator {
 /* ---------------------- 各種JavascriptのためのCSS ---------------------- */
 /*記事を引用*/
 a.postidlink+div {
+    position: relative;
     margin: 1rem 2rem;
     padding: 2rem 1rem;
+    border-radius: 5px;
     background-color: var(--nc-bg-2);
     color: var(--nc-tx-2);
     font-size: 0.8em;
     line-height: 1.2;
-    border-radius: 5px;
-
-    position: relative;
 }
 
 a.postidlink+div::before {
-    font-family: "Font Awesome 5 Free";
-    content: '\f4ad';
-    font-weight: 900;
-    display: inline-block;
     position: absolute;
     top: -1rem;
     left: -0.8rem;
-    font-size: 2rem;
+    display: inline-block;
     color: var(--nc-ac-1);
+    content: '\f4ad';
+    font-weight: 900;
+    font-size: 2rem;
+    font-family: "Font Awesome 5 Free";
 }
-
 
 /*カスタム絵文字と画像を表示*/
 /*全体の調整*/
@@ -787,17 +783,17 @@ input.matuba_input {
 
 /*ボタン*/
 .matuba_pci_btn {
-    display: inline-block;
     position: fixed;
-    right: 0;
     top: calc(100% - 4.2rem);
+    right: 0;
     z-index: var(--matuba_pci_btn);
+    display: inline-block;
     padding: 5px 10px;
-    font-size: 2rem;
-    background-color: var(--nc-bg-2);
     border-width: 2px 0 2px 2px;
     border-style: solid;
     border-color: var(--nc-bg-3);
+    background-color: var(--nc-bg-2);
+    font-size: 2rem;
     transition: 0.3s ease;
 }
 
@@ -818,37 +814,37 @@ input[id="quickpost_bottun"]:checked~.matuba_pci_btn>label[for="image_bottun"] {
 }
 
 .matuba_pci_btn label {
+    display: inline-block;
     padding: 2px 5px 2px 5px;
     border-radius: 3px;
-    display: inline-block;
     cursor: pointer;
 }
 
 input[id="quickpost_bottun"]:checked~.matuba_pci_btn>label[for="quickpost_bottun"] {
-    color: var(--nc-lk-tx);
     background-color: var(--nc-lk-1);
+    color: var(--nc-lk-tx);
     opacity: 0.7;
 }
 
 input[id="cepick_bottun"]:checked~.matuba_pci_btn>label[for="cepick_bottun"] {
-    color: var(--nc-lk-tx);
     background-color: var(--nc-lk-1);
+    color: var(--nc-lk-tx);
     opacity: 0.7;
 }
 
 input[id="image_bottun"]:checked~.matuba_pci_btn>label[for="image_bottun"] {
-    color: var(--nc-lk-tx);
     background-color: var(--nc-lk-1);
+    color: var(--nc-lk-tx);
     opacity: 0.7;
 }
 
 .matuba_quickpost {
-    margin: 0;
     position: fixed;
     top: 100%;
     right: 0;
     left: 0;
     z-index: var(--matuba_quickpost);
+    margin: 0;
     height: 100lvh;
     background-color: var(--nc-bg-2);
     transition: 0.3s;
@@ -856,10 +852,10 @@ input[id="image_bottun"]:checked~.matuba_pci_btn>label[for="image_bottun"] {
 
 .matuba_quickpost form {
     margin: 3.2rem auto;
-    width: calc(100% - 10px);
-    height: calc(100% - 10px);
     max-width: 900px;
     max-height: 900px;
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
 }
 
 input[id="quickpost_bottun"]:checked~.matuba_quickpost {
@@ -872,18 +868,18 @@ html:has(input[id="quickpost_bottun"]:checked) {
 }
 
 .matuba_cipanel {
-    display: block;
     position: fixed;
     bottom: 0;
-    transition: 0.5s;
-    width: 100%;
-    max-width: 400px;
-    height: 50lvh;
-    overflow-y: hidden;
+    display: block;
     overflow-x: hidden;
-    background-color: var(--nc-bg-2);
+    overflow-y: hidden;
+    max-width: 400px;
+    width: 100%;
+    height: 50lvh;
     border-style: solid;
     border-color: var(--nc-bg-3);
+    background-color: var(--nc-bg-2);
+    transition: 0.5s;
 }
 
 .matuba_cipanel iframe {
@@ -893,9 +889,8 @@ html:has(input[id="quickpost_bottun"]:checked) {
 
 .cepicker {
     left: -100%;
-    border-width: 2px 2px 0 0;
     z-index: var(--cepicker);
-
+    border-width: 2px 2px 0 0;
 }
 
 input[id="quickpost_bottun"]:checked~#cepick_bottun:checked~.cepicker {
@@ -903,9 +898,9 @@ input[id="quickpost_bottun"]:checked~#cepick_bottun:checked~.cepicker {
 }
 
 .imgpicker {
-    border-width: 2px 0 0 2px;
     right: -100%;
     z-index: var(--imgpicker);
+    border-width: 2px 0 0 2px;
 }
 
 input[id="quickpost_bottun"]:checked~#image_bottun:checked~.imgpicker {
@@ -930,18 +925,25 @@ input[id="quickpost_bottun"]:checked~#image_bottun:checked~.imgpicker {
 }
 
 .tooltip::after {
-    content: 'Copied!';
-    background: var(--nc-tx-1);
-    display: inline-block;
-    color: var(--nc-bg-1);
-    border-radius: 2px;
     position: absolute;
-    left: 50%;
     top: -12px;
-    transform: translate(-50%, 0);
-    font-size: .7rem;
+    left: 50%;
+    display: inline-block;
     padding: 5px 10px;
+    border-radius: 2px;
+    background: var(--nc-tx-1);
+    color: var(--nc-bg-1);
+    content: 'Copied!';
+    font-size: .7rem;
+    transform: translate(-50%, 0);
+    -webkit-animation: fade-tooltip .5s 1s 1 forwards;
     animation: fade-tooltip .5s 1s 1 forwards;
+}
+
+@-webkit-keyframes fade-tooltip {
+    to {
+        opacity: 0;
+    }
 }
 
 @keyframes fade-tooltip {
@@ -950,31 +952,29 @@ input[id="quickpost_bottun"]:checked~#image_bottun:checked~.imgpicker {
     }
 }
 
-   /* ローディング　背景画面 */
-   #loading {
-    width: 100vw;
-    height: 100vh;
-    transition: all 1s;
-    background-color: var(--nc-lk-1);
+/* ローディング　背景画面 */
+#loading {
     position: fixed;
     top: 0;
     left: 0;
     z-index: var(--loading);
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--nc-lk-1);
+    transition: all 1s;
     /*真ん中寄せ*/
     display: flex;
     align-items: center;
 }
 
 .loaded {
-    opacity: 0;
     visibility: hidden;
+    opacity: 0;
 }
-
 
 /*実際動く部分*/
 .load_anime {
     margin: 0 auto;
-
     width: 50px;
     height: 50px;
     background-color: var(--white-1);
@@ -983,16 +983,17 @@ input[id="quickpost_bottun"]:checked~#image_bottun:checked~.imgpicker {
 }
 
 /* ローディングアニメーション */
-@keyframes fadeOut {
+@-webkit-keyframes fadeOut {
     0% {
         opacity: 0;
         transform: scale(0.8);
         transform: rotate(0deg);
     }
 
-    25%{
+    25% {
         transform: rotate(360deg);
     }
+
     50% {
         opacity: 1;
         transform: scale(1);
@@ -1001,5 +1002,27 @@ input[id="quickpost_bottun"]:checked~#image_bottun:checked~.imgpicker {
     100% {
         opacity: 0;
         transform: scale(0.8);
+    }
 }
+
+@keyframes fadeOut {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(360deg);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
 }
