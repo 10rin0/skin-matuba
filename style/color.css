@@ -21,13 +21,6 @@
   /*文字色*/
   --warning-text: var(--white-2);
 
-  /*鍵付き投稿のパスワード入力済みのラベル*/
-  /*背景色*/
-  --success: mediumseagreen;
-  /*文字色*/
-  --success-text: var(--white-2);
-}
-
 
 /* ライトモード*/
 [data-theme="light"],
