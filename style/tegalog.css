@@ -888,7 +888,7 @@ html:has(input[id="quickpost_bottun"]:checked) {
 }
 
 .cepicker {
-    left: -100%;
+    left: -120%;
     z-index: var(--cepicker);
     border-width: 2px 2px 0 0;
 }
@@ -898,7 +898,7 @@ input[id="quickpost_bottun"]:checked~#cepick_bottun:checked~.cepicker {
 }
 
 .imgpicker {
-    right: -100%;
+    right: -120%;
     z-index: var(--imgpicker);
     border-width: 2px 0 0 2px;
 }
